@@ -13,10 +13,41 @@ $$\frac{c}{p}=\frac{m}{p}-\frac{kn}{p}$$
 
 ## 计算 $\left\lfloor\sqrt n\right\rfloor$ 的算法  
 
-## 证明主定理
+```Python
+while True:
+    n=int(input("Enter a number: "))
+    if n<0:
+        is_negative=True
+        n=-n
+    else:
+        is_negative=False
+    left=1
+    right=n
+
+    while True:
+        result=int((left+right)/2)  # 二分法
+        if result*result<=n<(result+1)*(result+1):
+            break
+        elif result*result>n:
+            right=result
+        else:
+            left=result
+    
+    if is_negative:
+        print("The sqrt is: ",result,"i")
+    else:
+        print("The sqrt is: ",result)
+
+```
+
+运行截图：  
+![result](../img/w1.png)  
+
+## 证明主定理  
+
 设 $n$ 是 $b$ 的幂，令 $n=b^m$ ,并设 $f(1)=1 ，则
 $$f\left(b^m\right)=af\left(b^{m-1}\right)+\left(b^k\right)^m$$
-累加可得 
+累加可得
 $$\frac{f\left(b^m\right)}{a^m}=\sum_{i=0}^{m}\left(\frac{b^k}{a}\right)^i$$
 移项后，若 $a>b^k$ ，则
 $$f(n)=O(a^m)=O(n^{log_ba})$$
@@ -24,4 +55,14 @@ $$f(n)=O(a^m)=O(n^{log_ba})$$
 $$f(n)=O(a^m{log_bn})=O(n^k{logn})$$
 若 $a<b^k$ ，则  
 $$f\left(n\right)=\frac{\left(\frac{b^k}{a}\right)^{m+1}-1}{\frac{b^k}{a}-1}=O\left(a^m\left(\frac{b^k}{a}\right)^m\right)=O\left(n^k\right)$$
+得证。
+
+## 1-6  
+
+
+## 1-7  
+
+因为对于所有的 $n>1$ ，均有
+$$n!=n\times(n-1)\times(n-2)\dotsb2\times1 \leq \prod_{i=1}^{n}n=n^n$$
+故 $n!=O(n^n)$  
 得证。
