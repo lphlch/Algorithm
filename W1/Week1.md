@@ -37,7 +37,6 @@ while True:
         print("The sqrt is: ",result,"i")
     else:
         print("The sqrt is: ",result)
-
 ```
 
 运行截图：  
@@ -58,6 +57,58 @@ $$f\left(n\right)=\frac{\left(\frac{b^k}{a}\right)^{m+1}-1}{\frac{b^k}{a}-1}=O\l
 得证。
 
 ## 1-6  
+
+### (1)
+
+$\because f(n)=\log{n^2}=2\log{n}$
+
+对于任意的$n \ge 1$ ，均有$2\log{n}\le2(\log{n}+5)$，故$f(n)=O(g(n))$
+
+对于任意的$n\ge10^5$，均有$2\log{n}\ge\log{n}+5$，故$f(n)=\Omega(g(n))$
+
+$\therefore f(n)=\theta(g(n))$
+
+### (2)
+
+$\because 对于任意的n\ge1，均有f(n)\le g(n)$，故
+
+$f(n)=O(g(n))$
+
+### (3)
+
+$\because 对于任意的n\ge1，均有f(n)\ge g(n)$，故
+
+$f(n)=\Omega(g(n))$
+
+### (4)
+
+$\because 对于任意的n\ge1，均有f(n)\ge g(n)$，故
+
+$f(n)=\Omega(g(n))$
+
+### (5)
+
+易知$f(n)=\theta(1),g(n)=\theta(1)$，故$f(n)$的阶等于$g(n)$​的阶，于是
+
+$f(n)=\theta(g(n))$
+
+### (6)
+
+$\because 对于任意的n\ge1，均有f(n)=g^2(n)\ge g(n)$，故
+
+$f(n)=\Omega(g(n))$
+
+### (7)
+
+$\because 对于任意的n\ge2，均有f(n)=2^n\ge 0.01(100n^2)=0.01g(n)$，故
+
+$f(n)=\Omega(g(n))$
+
+### (8)
+
+$\because 对于任意的n\ge1，均有f(n)=2^n \le 3^n=g(n)$，故
+
+$f(n)=O(g(n))$
 
 
 ## 1-7  
