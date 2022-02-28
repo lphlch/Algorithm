@@ -45,7 +45,8 @@ while True:
 ## 证明主定理  
 
 设 $n$ 是 $b$ 的幂，令 $n=b^m$ ,并设 $f(1)=1 ，则
-$$f\left(b^m\right)=af\left(b^{m-1}\right)+\left(b^k\right)^m$$
+$$f\left(b^m\right)=af\left(b^{m-1}\right)+\left(b^k\right)^m$
+
 累加可得
 $$\frac{f\left(b^m\right)}{a^m}=\sum_{i=0}^{m}\left(\frac{b^k}{a}\right)^i$$
 移项后，若 $a>b^k$ ，则
