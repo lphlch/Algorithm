@@ -111,10 +111,14 @@ $\because 对于任意的n\ge1，均有f(n)=2^n \le 3^n=g(n)$，故
 
 $f(n)=O(g(n))$
 
-
 ## 1-7  
 
-因为对于所有的 $n>1$ ，均有
-$$n!=n\times(n-1)\times(n-2)\dotsb2\times1 \leq \prod_{i=1}^{n}n=n^n$$
-故 $n!=O(n^n)$  
+对于任意的$n>1$，均有
+
+$0<\frac{n!}{n^n}=\frac{1}{n}\times\frac{2}{n}\times\cdots\times\frac{n}{n}\le\frac{1}{n}$
+
+由$\lim\limits_{n\rightarrow\infty}\frac{n!}{n^n}=0$，
+
+得 $n!=o(n^n)$ 
 得证。
+
