@@ -247,3 +247,75 @@ fout.close()
 | 8<br/>4,5,6,8,1,2,3,9        | 17712<br/>[4, 5, 6, 8, 1, 2, 9, 3]          |
 | 10<br/>4,5,6,15,12,3,9,8,7,1 | 821447<br/>[4, 5, 6, 15, 12, 7, 1, 3, 8, 9] |
 
+## 算法实现2-9
+
+事实上，使用单色的汉诺塔算法，即可满足要求。证明如下：
+
+当出发柱上有奇数个盘子时，最上与最下的盘子颜色相同为A。中间柱有偶数个盘子，最底层为另一颜色B，最上层为A。目标柱最底层为A，出发柱最上层为B。中间柱接下去移动时就变成了出发柱，原先的出发柱变成中间柱，叠加上颜色A，而此时目标柱叠加上颜色B，并不会出现颜色相同的情况。
+
+而当出发柱上有偶数个盘子时，最上为A、最底为B，中间柱有奇数个盘子，且最上和最底都为A，目标柱最底为B。出发柱最上层的颜色为B。中间柱上的奇数个盘子，移动时就变成出发柱。原先的出发柱变成中间柱，叠加的第一个盘子为B，目标柱叠加的是A。也不会出现颜色相同的情况。
+
+如下的检验算法在单色汉诺塔基础上添加了颜色判断，若颜色不同则会输出ERROR。测试中并未发现有输出ERROR。可知算法正确。
+
+```python
+def hanoi(level, source, dest, temp, fout):
+    """solve hanoi problem with color check, and print moving steps
+
+    Args:
+        level (int): level of hanoi tower
+        source (string): source tower name
+        dest (string): destination tower name
+        temp (string): middle tower name
+        fout (file handle): file handle of output file
+    """    
+    if level == 1:
+        fout.write("1 "+source+' '+dest+"\n")
+    else:
+        hanoi(level-1, source, temp, dest, fout)
+
+        #move
+        if(source == "A"):
+            arrSource = a
+        elif(source == "B"):
+            arrSource = b
+        else:
+            arrSource = c
+        if(dest == "A"):
+            arrDest=a
+        elif(dest=="B"):
+            arrDest=b
+        else:
+            arrDest=c
+        if(len(arrDest)!=0 and (arrSource[-1]+arrDest[-1])%2 == 0 ):    # check if the last two disks are even or odd
+            fout.write("ERROR!")
+        else:
+            arrDest.append(arrSource.pop())
+            fout.write(str(level)+' '+source+' '+dest+"\n")
+
+        hanoi(level-1, temp, dest, source, fout)
+
+
+# read file
+fin = open("input.txt", "r")
+content = fin.readlines()
+n = int(content[0])
+fin.close()
+
+global a, b, c
+a = [x for x in range(1, n+1)]
+b = []
+c = []
+
+# write file
+fout = open("output.txt", "w")
+hanoi(n, "A", "B", "C", fout)
+fout.close()
+```
+
+输入输出：
+
+| 输入 input.txt | 输出 output.txt                                              |
+| -------------- | ------------------------------------------------------------ |
+| 1              | 1 A B                                                        |
+| 3              | 1 A B<br/>2 A C<br/>1 B C<br/>3 A B<br/>1 C A<br/>2 C B<br/>1 A B |
+| 5              | 1 A B<br/>2 A C<br/>1 B C<br/>3 A B<br/>1 C A<br/>2 C B<br/>1 A B<br/>4 A C<br/>1 B C<br/>2 B A<br/>1 C A<br/>3 B C<br/>1 A B<br/>2 A C<br/>1 B C<br/>5 A B<br/>1 C A<br/>2 C B<br/>1 A B<br/>3 C A<br/>1 B C<br/>2 B A<br/>1 C A<br/>4 C B<br/>1 A B<br/>2 A C<br/>1 B C<br/>3 A B<br/>1 C A<br/>2 C B<br/>1 A B |
